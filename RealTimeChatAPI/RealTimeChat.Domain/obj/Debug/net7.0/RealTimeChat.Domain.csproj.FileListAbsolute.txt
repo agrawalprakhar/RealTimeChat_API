@@ -1,6 +1,8 @@
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.deps.json
+C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.runtimeconfig.json
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.dll
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.pdb
+C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.csproj.AssemblyReference.cache
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.AssemblyInfoInputs.cache
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.AssemblyInfo.cs
@@ -8,4 +10,5 @@ C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeCha
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.dll
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\refint\RealTimeChat.Domain.dll
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.pdb
+C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.genruntimeconfig.cache
 C:\Users\admin\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\ref\RealTimeChat.Domain.dll
