@@ -58,5 +58,6 @@ namespace RealTimeChat.DAL.Repository
             dbSet.Remove(entity);
             _db.SaveChanges();
         }
+        }
     }
-}
+

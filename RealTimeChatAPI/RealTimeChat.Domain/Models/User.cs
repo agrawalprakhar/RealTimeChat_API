@@ -10,8 +10,7 @@ namespace RealTimeChat.Domain.Models
 {
    public class User :IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
+       
 
         [Required]
         public string Name { get; set; }

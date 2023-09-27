@@ -18,6 +18,9 @@ using Microsoft.CodeAnalysis.Scripting;
 using NuGet.Protocol.Plugins;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
+using System.Web.Providers.Entities;
+using RealTimeChat.DAL.Repository;
+using Azure.Core;
 
 namespace MinimalChatApplication.Controllers
 {
@@ -35,32 +38,12 @@ namespace MinimalChatApplication.Controllers
         }
 
 
-     
-
-        // GET: api/Users
-        [HttpGet("/api/users")]
-        [Authorize]
-        public async Task<ActionResult<List<User>>> GetUser()
-        {
-            var currentUser = HttpContext.User;
-            var userId = currentUser.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var userName = currentUser.FindFirst(ClaimTypes.Name)?.Value;
-            var userEmail = currentUser.FindFirst(ClaimTypes.Email)?.Value;
-            await Console.Out.WriteLineAsync(userId);
-
-            if (!HttpContext.User.Identity.IsAuthenticated)
-            {
-                return Unauthorized(new { message = "Unauthorized access" });
-            }
-            var users = _userRepo.GetAll();
-
-            return Ok(users);
-        }
+    
 
 
         // POST: api/register
         [HttpPost("/api/register")]
-        public async Task<IActionResult> Signup([FromBody]User model)
+        public async Task<IActionResult> Signup(UserRegistration request)
         {
             if (!ModelState.IsValid)
             {
@@ -68,27 +51,34 @@ namespace MinimalChatApplication.Controllers
             }
 
             // Check if a user with the provided email already exists
-            var existingUser = _userRepo.Get(u => u.Email == model.Email);
+            var existingUser = _userRepo.Get(u => u.Email == request.Email);
             if (existingUser != null)
             {
                 return Conflict(new { error = "Email is already registered." });
             }
 
-            var result = await _userRepo.SignupAsync(model);
+            var (success, message, userDto) = await _userRepo.SignupAsync(request);
 
-            if (result.Succeeded) {
-                return Ok(result);
+            if (success)
+            {
+                return Ok(new { Message = message, User = userDto });
+            }
+            else
+            {
+                return BadRequest(new { error = message });
             }
 
-            return BadRequest(new { });
-
-        
-          
         }
 
 
-        // POST: api/login
-        [HttpPost("/api/login")]
+
+
+
+
+
+
+       // POST: api/login
+       [HttpPost("/api/login")]
         public async Task<ActionResult> Login([FromBody] loginRequest loginData)
         {
             if (!ModelState.IsValid)
@@ -97,22 +87,49 @@ namespace MinimalChatApplication.Controllers
             }
 
             // Find the user by email
-            var user =  _userRepo.Get(u => u.Email == loginData.Email);
+            var user = _userRepo.Get(u => u.Email == loginData.Email);
 
-            if (user == null )
+            if (user == null)
             {
                 return Unauthorized(new { error = "Login Failed Due to Wrong Credential" });
             }
 
-            var result = await _userRepo.LoginAsync(loginData);
+            var (success, message, response) = await _userRepo.LoginAsync(loginData);
 
-            if(string.IsNullOrEmpty(result))
+            if (success)
             {
-                return Unauthorized();
+                return Ok(response);
+            }
+            else
+            {
+                return Unauthorized(new { error = message });
+            }
+        }
+
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> GetUserList()
+        {
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            await Console.Out.WriteLineAsync(currentUserId);
+
+            var users = await _userRepo.GetUsers(currentUserId);
+
+            if (users == null)
+            {
+                return NotFound();
             }
 
-            return Ok(result);
+            var userListResponse = users.Select(u => new
+            {
+                id = u.Id,
+                name = u.UserName,
+                email = u.Email
+            }).ToList();
+
+            return Ok(userListResponse);
         }
-     
+
     }
 }
