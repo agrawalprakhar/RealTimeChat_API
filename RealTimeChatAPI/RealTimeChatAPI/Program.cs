@@ -18,17 +18,22 @@ namespace RealTimeChatAPI
 
             // Add services to the container.
 
+
             builder.Services.AddControllers();
+            builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("JWT"));
 
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowLocalhost4200", builder =>
                 {
                     builder.WithOrigins("http://localhost:4200") // Allow requests from this origin
+                        .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowAnyMethod();
+                        .AllowAnyMethod()
+                        .AllowCredentials();
                 });
             });
+
 
             ConfigurationManager Configuration = builder.Configuration;
 
@@ -68,6 +73,8 @@ namespace RealTimeChatAPI
                  };
              });
 
+
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -82,10 +89,12 @@ namespace RealTimeChatAPI
             }
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
-            app.UseAuthentication();
+            app.UseCors("AllowLocalhost4200");
+
 
 
             app.MapControllers();

@@ -58,7 +58,7 @@ namespace RealTimeChat.DAL.Repository
             }
             var userDto = new RegistrationDto
             {
-
+                Id=user.Id,
                 Name = user.Name,
                 Email = user.Email,
               
@@ -102,35 +102,47 @@ namespace RealTimeChat.DAL.Repository
 
         private string GenerateJwtToken(string id, string name, string email)
         {
-            var claims = new[]
-            {
-                    new Claim(ClaimTypes.NameIdentifier,id.ToString()),
+         
+            var authClaims = new List<Claim>
+                {
                     new Claim(ClaimTypes.Name,name),
-                    new Claim(ClaimTypes.Email,email)
+                    new Claim(ClaimTypes.NameIdentifier,id.ToString()),
+                    new Claim(ClaimTypes.Email,email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
 
-                 };
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-            var signIn = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+           
+           
             var token = new JwtSecurityToken(
-                _configuration["Jwt:Issuer"],
-                _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(30), // Token expiration time
-                signingCredentials: signIn);
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public async Task<IEnumerable<Domain.Models.User>> GetUsers(string currentUserId)
-        {
-            if (currentUserId == null)
-            {
-                return null;
-            }
-            return await _db.Users.Where(u => u.Id != currentUserId).ToListAsync();
-        }
+        //public async Task<IEnumerable<Domain.Models.User>> GetUsers(string currentUserId)
+        //{
+        //    if (currentUserId == null)
+        //    {
+        //        return null;
+        //    }
+        //    return await _db.Users.Where(u => u.Id != currentUserId).ToListAsync();
+        //}
 
+        public async Task<List<Domain.Models.User>> GetAllUsersAsync()
+        {
+            //    return await _db.Users
+            //        .Where(u => u.Id != (currentUserId))
+            //        .ToListAsync();
+
+            return (List<Domain.Models.User>)GetAll();
+        }
 
     }
 }

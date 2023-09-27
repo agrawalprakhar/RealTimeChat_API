@@ -21,6 +21,10 @@ using RealTimeChat.Domain.Models;
 using System.Web.Providers.Entities;
 using RealTimeChat.DAL.Repository;
 using Azure.Core;
+using System.Data.Entity;
+using Google.Apis.Auth;
+using RealTimeChatAPI;
+using Microsoft.Extensions.Options;
 
 namespace MinimalChatApplication.Controllers
 {
@@ -30,11 +34,14 @@ namespace MinimalChatApplication.Controllers
     {
         private readonly IUserRepository _userRepo;
         private readonly IConfiguration _configuration;
+        private readonly AppSettings _appSettings;
 
-        public UsersController(IUserRepository db, IConfiguration configuration)
+        public UsersController(IUserRepository db, IConfiguration configuration,IOptions<AppSettings> appSettings)
         {
             _userRepo = db;
             _configuration = configuration;
+            _appSettings = appSettings.Value;
+         
         }
 
 
@@ -106,30 +113,84 @@ namespace MinimalChatApplication.Controllers
             }
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<IActionResult> GetUserList()
+        [HttpPost("/api/LoginWithGoogle")]
+        public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
         {
-            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            await Console.Out.WriteLineAsync(currentUserId);
-
-            var users = await _userRepo.GetUsers(currentUserId);
-
-            if (users == null)
+            var settings = new GoogleJsonWebSignature.ValidationSettings()
             {
-                return NotFound();
+                Audience = new List<string> { this._appSettings.GoogleClientId },
+
+            };
+
+            var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
+
+            var UserList = await _userRepo.GetAllUsersAsync();
+
+            var user = UserList.Where(x =>x.Name == payload.Name).FirstOrDefault();
+
+            if (user != null)
+            {
+                return Ok(JWTGenerator(user));
+            }
+            else
+            {
+                return BadRequest();
             }
 
-            var userListResponse = users.Select(u => new
-            {
-                id = u.Id,
-                name = u.UserName,
-                email = u.Email
-            }).ToList();
-
-            return Ok(userListResponse);
         }
 
+        private object? JWTGenerator(RealTimeChat.Domain.Models.User user)
+        {
+            var authClaims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,user.Name),
+                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+                    new Claim(ClaimTypes.Email,user.Email),
+                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                };
+
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+
+     
+
+        [HttpGet]
+        public async Task<ActionResult<List<RealTimeChat.Domain.Models.User>>> GetUser()
+        {
+            var currentUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (!HttpContext.User.Identity.IsAuthenticated)
+            {
+                return Unauthorized(new { message = "Unauthorized access" });
+            }
+
+            var users = await _userRepo.GetAllUsersAsync();
+
+            var filteredUsers = users
+             .Where(u => u.Id != currentUserId)
+             .Select(u => new
+             {   
+                 Id=u.Id,
+                 Name = u.Name,
+                 Email = u.Email
+             })
+             .ToList();
+
+
+
+            return Ok(filteredUsers);
+        }
     }
 }

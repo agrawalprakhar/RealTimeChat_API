@@ -65,6 +65,57 @@
           }
         }
       },
+      "Google.Apis/1.62.1": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis.Core": "1.62.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.62.1": {
+        "type": "package",
+        "dependencies": {
+          "Google.Apis": "1.62.1",
+          "Google.Apis.Core": "1.62.1"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {},
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
+      "Google.Apis.Core/1.62.1": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "compile": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Humanizer/2.14.1": {
         "type": "package",
         "dependencies": {
@@ -710,6 +761,22 @@
             "related": ".xml"
           }
         }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/7.0.11": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
         "type": "package",
@@ -2349,15 +2416,15 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "related": ".xml"
           }
         }
@@ -4284,9 +4351,11 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNet.Providers.Core": "2.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -4305,8 +4374,10 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -4389,6 +4460,80 @@
         "tools/init.ps1",
         "tools/install.ps1",
         "tools/migrate.exe"
+      ]
+    },
+    "Google.Apis/1.62.1": {
+      "sha512": "gfCyrCkJkxin/CTtxZN6quHQ4jF+JudHOcZoYsJgyROu8cEijTx1rf+JZW2/Z/Tl6F6Paxuq6JKZi5rijIni8A==",
+      "type": "package",
+      "path": "google.apis/1.62.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.1.62.1.nupkg.sha512",
+        "google.apis.nuspec",
+        "lib/net45/Google.Apis.PlatformServices.dll",
+        "lib/net45/Google.Apis.dll",
+        "lib/net45/Google.Apis.pdb",
+        "lib/net45/Google.Apis.xml",
+        "lib/netstandard1.3/Google.Apis.dll",
+        "lib/netstandard1.3/Google.Apis.pdb",
+        "lib/netstandard1.3/Google.Apis.xml",
+        "lib/netstandard2.0/Google.Apis.dll",
+        "lib/netstandard2.0/Google.Apis.pdb",
+        "lib/netstandard2.0/Google.Apis.xml"
+      ]
+    },
+    "Google.Apis.Auth/1.62.1": {
+      "sha512": "QXDes67ZURNIop9l/YVc0vP6lRAzwKOrKI4DrGQgG0mgyQle0xJm2CsJ/izpB/XJqOVrLQiCkopFEuKs7Cnstw==",
+      "type": "package",
+      "path": "google.apis.auth/1.62.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.auth.1.62.1.nupkg.sha512",
+        "google.apis.auth.nuspec",
+        "lib/net45/Google.Apis.Auth.PlatformServices.dll",
+        "lib/net45/Google.Apis.Auth.dll",
+        "lib/net45/Google.Apis.Auth.pdb",
+        "lib/net45/Google.Apis.Auth.xml",
+        "lib/net461/Google.Apis.Auth.PlatformServices.dll",
+        "lib/net461/Google.Apis.Auth.dll",
+        "lib/net461/Google.Apis.Auth.pdb",
+        "lib/net461/Google.Apis.Auth.xml",
+        "lib/netstandard1.3/Google.Apis.Auth.PlatformServices.dll",
+        "lib/netstandard1.3/Google.Apis.Auth.dll",
+        "lib/netstandard1.3/Google.Apis.Auth.pdb",
+        "lib/netstandard1.3/Google.Apis.Auth.xml",
+        "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll",
+        "lib/netstandard2.0/Google.Apis.Auth.dll",
+        "lib/netstandard2.0/Google.Apis.Auth.pdb",
+        "lib/netstandard2.0/Google.Apis.Auth.xml"
+      ]
+    },
+    "Google.Apis.Core/1.62.1": {
+      "sha512": "pW+nxHMDjmr8wVy4vA1EqA3fZ+ZNAr25u1cT45aYFzHg4KmaXhIOoscB2F8ZwtnHIqTo387ZeQfGQomNLi4pFA==",
+      "type": "package",
+      "path": "google.apis.core/1.62.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.core.1.62.1.nupkg.sha512",
+        "google.apis.core.nuspec",
+        "lib/net45/Google.Apis.Core.dll",
+        "lib/net45/Google.Apis.Core.pdb",
+        "lib/net45/Google.Apis.Core.xml",
+        "lib/netstandard1.3/Google.Apis.Core.dll",
+        "lib/netstandard1.3/Google.Apis.Core.pdb",
+        "lib/netstandard1.3/Google.Apis.Core.xml",
+        "lib/netstandard2.0/Google.Apis.Core.dll",
+        "lib/netstandard2.0/Google.Apis.Core.pdb",
+        "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
     "Humanizer/2.14.1": {
@@ -5175,6 +5320,21 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Authentication.Core.xml",
         "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
         "microsoft.aspnetcore.authentication.core.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.Google/7.0.11": {
+      "sha512": "tEIhPwZpF9Sa6w0hbQsRYQ+0AzL4aIRSyNu6gbkCdPwjILIl567IEAGCVTzkzi/Kxqvyz4N75tz3hDJ0szKmaA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/7.0.11",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net7.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.7.0.11.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
@@ -7878,14 +8038,15 @@
         "netstandard.library.nuspec"
       ]
     },
-    "Newtonsoft.Json/13.0.1": {
-      "sha512": "ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+    "Newtonsoft.Json/13.0.3": {
+      "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
-      "path": "newtonsoft.json/13.0.1",
+      "path": "newtonsoft.json/13.0.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.md",
+        "README.md",
         "lib/net20/Newtonsoft.Json.dll",
         "lib/net20/Newtonsoft.Json.xml",
         "lib/net35/Newtonsoft.Json.dll",
@@ -7894,13 +8055,15 @@
         "lib/net40/Newtonsoft.Json.xml",
         "lib/net45/Newtonsoft.Json.dll",
         "lib/net45/Newtonsoft.Json.xml",
+        "lib/net6.0/Newtonsoft.Json.dll",
+        "lib/net6.0/Newtonsoft.Json.xml",
         "lib/netstandard1.0/Newtonsoft.Json.dll",
         "lib/netstandard1.0/Newtonsoft.Json.xml",
         "lib/netstandard1.3/Newtonsoft.Json.dll",
         "lib/netstandard1.3/Newtonsoft.Json.xml",
         "lib/netstandard2.0/Newtonsoft.Json.dll",
         "lib/netstandard2.0/Newtonsoft.Json.xml",
-        "newtonsoft.json.13.0.1.nupkg.sha512",
+        "newtonsoft.json.13.0.3.nupkg.sha512",
         "newtonsoft.json.nuspec",
         "packageIcon.png"
       ]
@@ -12336,8 +12499,10 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "Google.Apis.Auth >= 1.62.1",
       "Microsoft.AspNetCore.Authentication.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.Core >= 2.2.0",
+      "Microsoft.AspNetCore.Authentication.Google >= 7.0.11",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.11",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.11",
@@ -12353,19 +12518,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\pranj\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
       "projectName": "RealTimeChatAPI",
-      "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
-      "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
+      "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -12379,11 +12544,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
-              "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
+            "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
+              "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
             },
-            "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
-              "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
+            "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+              "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
             }
           }
         }
@@ -12398,6 +12563,10 @@
       "net7.0": {
         "targetAlias": "net7.0",
         "dependencies": {
+          "Google.Apis.Auth": {
+            "target": "Package",
+            "version": "[1.62.1, )"
+          },
           "Microsoft.AspNetCore.Authentication.Abstractions": {
             "target": "Package",
             "version": "[2.2.0, )"
@@ -12405,6 +12574,10 @@
           "Microsoft.AspNetCore.Authentication.Core": {
             "target": "Package",
             "version": "[2.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.Google": {
+            "target": "Package",
+            "version": "[7.0.11, )"
           },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",

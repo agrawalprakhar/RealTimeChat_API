@@ -8,8 +8,10 @@
     ".NETCoreApp,Version=v7.0": {
       "RealTimeChatAPI/1.0.0": {
         "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -70,6 +72,44 @@
           "lib/net45/EntityFramework.dll": {
             "assemblyVersion": "6.0.0.0",
             "fileVersion": "6.0.20911.0"
+          }
+        }
+      },
+      "Google.Apis/1.62.1": {
+        "dependencies": {
+          "Google.Apis.Core": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Auth/1.62.1": {
+        "dependencies": {
+          "Google.Apis": "1.62.1",
+          "Google.Apis.Core": "1.62.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Auth.PlatformServices.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          },
+          "lib/netstandard2.0/Google.Apis.Auth.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
+          }
+        }
+      },
+      "Google.Apis.Core/1.62.1": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Google.Apis.Core.dll": {
+            "assemblyVersion": "1.62.1.0",
+            "fileVersion": "1.62.1.0"
           }
         }
       },
@@ -636,6 +676,14 @@
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http": "2.2.0",
           "Microsoft.AspNetCore.Http.Extensions": "2.2.0"
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Google/7.0.11": {
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "assemblyVersion": "7.0.11.0",
+            "fileVersion": "7.0.1123.42502"
+          }
         }
       },
       "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
@@ -1281,7 +1329,7 @@
         "dependencies": {
           "Humanizer": "2.14.1",
           "Microsoft.CodeAnalysis.CSharp.Features": "4.4.0",
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.ProjectModel": "6.6.1"
         },
         "runtime": {
@@ -1594,7 +1642,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "7.0.10",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll": {
@@ -1646,7 +1694,7 @@
           "Microsoft.Build": "17.3.2",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.4.0",
           "Microsoft.DotNet.Scaffolding.Shared": "7.0.10",
-          "Newtonsoft.Json": "13.0.1"
+          "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
           "lib/net7.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll": {
@@ -1749,11 +1797,11 @@
           "System.Xml.XDocument": "4.3.0"
         }
       },
-      "Newtonsoft.Json/13.0.1": {
+      "Newtonsoft.Json/13.0.3": {
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+          "lib/net6.0/Newtonsoft.Json.dll": {
             "assemblyVersion": "13.0.0.0",
-            "fileVersion": "13.0.1.25517"
+            "fileVersion": "13.0.3.27908"
           }
         }
       },
@@ -1815,7 +1863,7 @@
       },
       "NuGet.Packaging/6.6.1": {
         "dependencies": {
-          "Newtonsoft.Json": "13.0.1",
+          "Newtonsoft.Json": "13.0.3",
           "NuGet.Configuration": "6.6.1",
           "NuGet.Versioning": "6.6.1",
           "System.Security.Cryptography.Cng": "5.0.0",
@@ -2722,9 +2770,11 @@
       },
       "RealTimeChat.DAL/1.0.0": {
         "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNet.Providers.Core": "2.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -2738,8 +2788,10 @@
       },
       "RealTimeChat.Domain/1.0.0": {
         "dependencies": {
+          "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
+          "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.11",
@@ -2778,6 +2830,27 @@
       "sha512": "sha512-y6lX/VMghGBV6TvgQS4Q2WK6kAcOoyD+TQxObN9utd0JsMMdMxyqARxKbvgi7KEIbQ8osZ4ZvImaly7l3NDFDw==",
       "path": "entityframework/6.0.0",
       "hashPath": "entityframework.6.0.0.nupkg.sha512"
+    },
+    "Google.Apis/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gfCyrCkJkxin/CTtxZN6quHQ4jF+JudHOcZoYsJgyROu8cEijTx1rf+JZW2/Z/Tl6F6Paxuq6JKZi5rijIni8A==",
+      "path": "google.apis/1.62.1",
+      "hashPath": "google.apis.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Auth/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QXDes67ZURNIop9l/YVc0vP6lRAzwKOrKI4DrGQgG0mgyQle0xJm2CsJ/izpB/XJqOVrLQiCkopFEuKs7Cnstw==",
+      "path": "google.apis.auth/1.62.1",
+      "hashPath": "google.apis.auth.1.62.1.nupkg.sha512"
+    },
+    "Google.Apis.Core/1.62.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-pW+nxHMDjmr8wVy4vA1EqA3fZ+ZNAr25u1cT45aYFzHg4KmaXhIOoscB2F8ZwtnHIqTo387ZeQfGQomNLi4pFA==",
+      "path": "google.apis.core/1.62.1",
+      "hashPath": "google.apis.core.1.62.1.nupkg.sha512"
     },
     "Humanizer/2.14.1": {
       "type": "package",
@@ -3149,6 +3222,13 @@
       "sha512": "sha512-XlVJzJ5wPOYW+Y0J6Q/LVTEyfS4ssLXmt60T0SPP+D8abVhBTl+cgw2gDHlyKYIkcJg7btMVh383NDkMVqD/fg==",
       "path": "microsoft.aspnetcore.authentication.core/2.2.0",
       "hashPath": "microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Google/7.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tEIhPwZpF9Sa6w0hbQsRYQ+0AzL4aIRSyNu6gbkCdPwjILIl567IEAGCVTzkzi/Kxqvyz4N75tz3hDJ0szKmaA==",
+      "path": "microsoft.aspnetcore.authentication.google/7.0.11",
+      "hashPath": "microsoft.aspnetcore.authentication.google.7.0.11.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.11": {
       "type": "package",
@@ -3696,12 +3776,12 @@
       "path": "netstandard.library/1.6.1",
       "hashPath": "netstandard.library.1.6.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/13.0.1": {
+    "Newtonsoft.Json/13.0.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
-      "path": "newtonsoft.json/13.0.1",
-      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+      "sha512": "sha512-HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
+      "path": "newtonsoft.json/13.0.3",
+      "hashPath": "newtonsoft.json.13.0.3.nupkg.sha512"
     },
     "NuGet.Common/6.6.1": {
       "type": "package",

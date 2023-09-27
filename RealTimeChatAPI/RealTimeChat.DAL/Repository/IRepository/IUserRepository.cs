@@ -18,7 +18,7 @@ namespace RealTimeChat.DAL.Repository.IRepository
 
         Task<(bool success, string message, LoginResponse response)> LoginAsync(loginRequest loginData);
 
-        Task<IEnumerable<Domain.Models.User>> GetUsers(string currentUserId);
+        Task<List<Domain.Models.User>> GetAllUsersAsync();
 
     }
 }

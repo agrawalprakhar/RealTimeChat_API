@@ -9,6 +9,7 @@ namespace RealTimeChat.Domain.Models
 {
     public class RegistrationDto
     {
+        public string  Id { get; set; }
       
         [Required]
         public string Name { get; set; }

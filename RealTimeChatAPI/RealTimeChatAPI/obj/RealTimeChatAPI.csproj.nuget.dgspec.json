@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj": {}
+    "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
+    "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
         "projectName": "RealTimeChat.DAL",
-        "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
-        "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
-                "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
+              "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+                "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
               }
             }
           }
@@ -44,6 +44,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.62.1, )"
+            },
             "Microsoft.AspNet.Providers.Core": {
               "target": "Package",
               "version": "[2.0.0, )"
@@ -55,6 +59,10 @@
             "Microsoft.AspNetCore.Authentication.Core": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -109,17 +117,17 @@
         }
       }
     },
-    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+    "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
         "projectName": "RealTimeChat.Domain",
-        "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
-        "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -145,6 +153,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.62.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -152,6 +164,10 @@
             "Microsoft.AspNetCore.Authentication.Core": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -206,17 +222,17 @@
         }
       }
     },
-    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj": {
+    "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
         "projectName": "RealTimeChatAPI",
-        "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
-        "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
+        "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -230,11 +246,11 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
-                "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
+              "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
+                "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
               },
-              "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
-                "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
+              "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+                "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
               }
             }
           }
@@ -249,6 +265,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Google.Apis.Auth": {
+              "target": "Package",
+              "version": "[1.62.1, )"
+            },
             "Microsoft.AspNetCore.Authentication.Abstractions": {
               "target": "Package",
               "version": "[2.2.0, )"
@@ -256,6 +276,10 @@
             "Microsoft.AspNetCore.Authentication.Core": {
               "target": "Package",
               "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
