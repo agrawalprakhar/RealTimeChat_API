@@ -63,15 +63,11 @@
           }
         }
       },
-      "EntityFramework/6.0.0": {
+      "DataAnnotationsExtensions/5.0.1.27": {
         "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.20911.0"
-          },
-          "lib/net45/EntityFramework.dll": {
-            "assemblyVersion": "6.0.0.0",
-            "fileVersion": "6.0.20911.0"
+          "lib/NETFramework40/DataAnnotationsExtensions.dll": {
+            "assemblyVersion": "5.0.1.27",
+            "fileVersion": "5.0.1.27"
           }
         }
       },
@@ -650,17 +646,6 @@
         "resources": {
           "lib/net6.0/zh-Hant/Humanizer.resources.dll": {
             "locale": "zh-Hant"
-          }
-        }
-      },
-      "Microsoft.AspNet.Providers.Core/2.0.0": {
-        "dependencies": {
-          "EntityFramework": "6.0.0"
-        },
-        "runtime": {
-          "lib/net40/System.Web.Providers.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.0.21122.0"
           }
         }
       },
@@ -2771,7 +2756,6 @@
       "RealTimeChat.DAL/1.0.0": {
         "dependencies": {
           "Google.Apis.Auth": "1.62.1",
-          "Microsoft.AspNet.Providers.Core": "2.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Google": "7.0.11",
@@ -2788,6 +2772,7 @@
       },
       "RealTimeChat.Domain/1.0.0": {
         "dependencies": {
+          "DataAnnotationsExtensions": "5.0.1.27",
           "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
@@ -2824,12 +2809,12 @@
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
     },
-    "EntityFramework/6.0.0": {
+    "DataAnnotationsExtensions/5.0.1.27": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-y6lX/VMghGBV6TvgQS4Q2WK6kAcOoyD+TQxObN9utd0JsMMdMxyqARxKbvgi7KEIbQ8osZ4ZvImaly7l3NDFDw==",
-      "path": "entityframework/6.0.0",
-      "hashPath": "entityframework.6.0.0.nupkg.sha512"
+      "sha512": "sha512-lw4n4XzY62raAOrrlPdkh4h3PXenReARIazAPzs8AvlkKDAK9pe7kcUL3dh3T095/Q9+LezoXCfjEgDPslmGyg==",
+      "path": "dataannotationsextensions/5.0.1.27",
+      "hashPath": "dataannotationsextensions.5.0.1.27.nupkg.sha512"
     },
     "Google.Apis/1.62.1": {
       "type": "package",
@@ -3201,13 +3186,6 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
-    },
-    "Microsoft.AspNet.Providers.Core/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-JMk31PExMANVDc04aSUyIlcL3pkFVyNg/dDn+ZZzmhZ2CBctI90BWQH1L0zXgD61ZWW5r4ybInV362sRKWIC+A==",
-      "path": "microsoft.aspnet.providers.core/2.0.0",
-      "hashPath": "microsoft.aspnet.providers.core.2.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
       "type": "package",

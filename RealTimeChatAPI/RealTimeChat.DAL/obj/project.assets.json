@@ -46,23 +46,13 @@
           }
         }
       },
-      "EntityFramework/6.0.0": {
+      "DataAnnotationsExtensions/5.0.1.27": {
         "type": "package",
         "compile": {
-          "lib/net45/EntityFramework.SqlServer.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/EntityFramework.dll": {
-            "related": ".SqlServer.xml;.xml"
-          }
+          "lib/NETFramework40/DataAnnotationsExtensions.dll": {}
         },
         "runtime": {
-          "lib/net45/EntityFramework.SqlServer.dll": {
-            "related": ".xml"
-          },
-          "lib/net45/EntityFramework.dll": {
-            "related": ".SqlServer.xml;.xml"
-          }
+          "lib/NETFramework40/DataAnnotationsExtensions.dll": {}
         }
       },
       "Google.Apis/1.62.1": {
@@ -125,22 +115,6 @@
         },
         "runtime": {
           "lib/net6.0/Humanizer.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "Microsoft.AspNet.Providers.Core/2.0.0": {
-        "type": "package",
-        "dependencies": {
-          "EntityFramework": "6.0.0"
-        },
-        "compile": {
-          "lib/net40/System.Web.Providers.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net40/System.Web.Providers.dll": {
             "related": ".xml"
           }
         }
@@ -1474,6 +1448,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
+          "DataAnnotationsExtensions": "5.0.1.27",
           "Google.Apis.Auth": "1.62.1",
           "Microsoft.AspNetCore.Authentication.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Authentication.Core": "2.2.0",
@@ -1532,34 +1507,16 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
-    "EntityFramework/6.0.0": {
-      "sha512": "y6lX/VMghGBV6TvgQS4Q2WK6kAcOoyD+TQxObN9utd0JsMMdMxyqARxKbvgi7KEIbQ8osZ4ZvImaly7l3NDFDw==",
+    "DataAnnotationsExtensions/5.0.1.27": {
+      "sha512": "lw4n4XzY62raAOrrlPdkh4h3PXenReARIazAPzs8AvlkKDAK9pe7kcUL3dh3T095/Q9+LezoXCfjEgDPslmGyg==",
       "type": "package",
-      "path": "entityframework/6.0.0",
-      "hasTools": true,
+      "path": "dataannotationsextensions/5.0.1.27",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Content/App.config.transform",
-        "Content/Web.config.transform",
-        "entityframework.6.0.0.nupkg.sha512",
-        "entityframework.nuspec",
-        "lib/net40/EntityFramework.SqlServer.dll",
-        "lib/net40/EntityFramework.SqlServer.xml",
-        "lib/net40/EntityFramework.dll",
-        "lib/net40/EntityFramework.xml",
-        "lib/net45/EntityFramework.SqlServer.dll",
-        "lib/net45/EntityFramework.SqlServer.xml",
-        "lib/net45/EntityFramework.dll",
-        "lib/net45/EntityFramework.xml",
-        "tools/EntityFramework.PowerShell.Utility.dll",
-        "tools/EntityFramework.PowerShell.dll",
-        "tools/EntityFramework.psd1",
-        "tools/EntityFramework.psm1",
-        "tools/about_EntityFramework.help.txt",
-        "tools/init.ps1",
-        "tools/install.ps1",
-        "tools/migrate.exe"
+        "dataannotationsextensions.5.0.1.27.nupkg.sha512",
+        "dataannotationsextensions.nuspec",
+        "lib/NETFramework40/DataAnnotationsExtensions.dll"
       ]
     },
     "Google.Apis/1.62.1": {
@@ -1652,20 +1609,6 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
-      ]
-    },
-    "Microsoft.AspNet.Providers.Core/2.0.0": {
-      "sha512": "JMk31PExMANVDc04aSUyIlcL3pkFVyNg/dDn+ZZzmhZ2CBctI90BWQH1L0zXgD61ZWW5r4ybInV362sRKWIC+A==",
-      "type": "package",
-      "path": "microsoft.aspnet.providers.core/2.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "ReadMe.txt",
-        "lib/net40/System.Web.Providers.dll",
-        "lib/net40/System.Web.Providers.xml",
-        "microsoft.aspnet.providers.core.2.0.0.nupkg.sha512",
-        "microsoft.aspnet.providers.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.2.0": {
@@ -3763,7 +3706,6 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "Google.Apis.Auth >= 1.62.1",
-      "Microsoft.AspNet.Providers.Core >= 2.0.0",
       "Microsoft.AspNetCore.Authentication.Abstractions >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.Core >= 2.2.0",
       "Microsoft.AspNetCore.Authentication.Google >= 7.0.11",
@@ -3778,19 +3720,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\pranj\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
+      "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
       "projectName": "RealTimeChat.DAL",
-      "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\obj\\",
+      "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
+      "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3804,8 +3746,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
-              "projectPath": "C:\\Users\\admin\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
+            "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+              "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\RealTimeChat\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
             }
           }
         }
@@ -3823,10 +3765,6 @@
           "Google.Apis.Auth": {
             "target": "Package",
             "version": "[1.62.1, )"
-          },
-          "Microsoft.AspNet.Providers.Core": {
-            "target": "Package",
-            "version": "[2.0.0, )"
           },
           "Microsoft.AspNetCore.Authentication.Abstractions": {
             "target": "Package",
@@ -3898,18 +3836,8 @@
       "code": "NU1701",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'EntityFramework 6.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "EntityFramework",
-      "targetGraphs": [
-        "net7.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.Providers.Core 2.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.Providers.Core",
+      "message": "Package 'DataAnnotationsExtensions 5.0.1.27' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net7.0'. This package may not be fully compatible with your project.",
+      "libraryId": "DataAnnotationsExtensions",
       "targetGraphs": [
         "net7.0"
       ]

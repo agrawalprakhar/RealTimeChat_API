@@ -18,10 +18,10 @@ using Microsoft.CodeAnalysis.Scripting;
 using NuGet.Protocol.Plugins;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
-using System.Web.Providers.Entities;
+
 using RealTimeChat.DAL.Repository;
 using Azure.Core;
-using System.Data.Entity;
+
 using Google.Apis.Auth;
 using RealTimeChatAPI;
 using Microsoft.Extensions.Options;
@@ -114,55 +114,63 @@ namespace MinimalChatApplication.Controllers
         }
 
         [HttpPost("/api/LoginWithGoogle")]
-        public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
+        public async Task<IActionResult> SocialLogin(tokenRequest token)
         {
-            var settings = new GoogleJsonWebSignature.ValidationSettings()
-            {
-                Audience = new List<string> { this._appSettings.GoogleClientId },
 
-            };
+            Console.WriteLine(token.TokenId);
+            var user = await _userRepo.VerifyGoogleTokenAsync(token.TokenId);
 
-            var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
-
-            var UserList = await _userRepo.GetAllUsersAsync();
-
-            var user = UserList.Where(x =>x.Name == payload.Name).FirstOrDefault();
-
-            if (user != null)
-            {
-                return Ok(JWTGenerator(user));
-            }
-            else
-            {
-                return BadRequest();
-            }
-
+            return Ok(user);
         }
+        //public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
+        //{
+        //    var settings = new GoogleJsonWebSignature.ValidationSettings()
+        //    {
+        //        Audience = new List<string> { this._appSettings.GoogleClientId },
 
-        private object? JWTGenerator(RealTimeChat.Domain.Models.User user)
-        {
-            var authClaims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name,user.Name),
-                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                    new Claim(ClaimTypes.Email,user.Email),
-                    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                };
+        //    };
 
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+        //    var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
+
+        //    var UserList = await _userRepo.GetAllUsersAsync();
+
+        //    var user = UserList.Where(x =>x.Name == payload.Name).FirstOrDefault();
+
+        //    if (user != null)
+        //    {
+        //        return Ok(JWTGenerator(user));
+        //    }
+        //    else
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //}
+
+        //private object? JWTGenerator(RealTimeChat.Domain.Models.User user)
+        //{
+        //    var authClaims = new List<Claim>
+        //        {
+        //            new Claim(ClaimTypes.Name,user.Name),
+        //            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+        //            new Claim(ClaimTypes.Email,user.Email),
+        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+        //        };
+
+        //    var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
 
 
 
-            var token = new JwtSecurityToken(
-                issuer: _configuration["JWT:ValidIssuer"],
-                audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
+        //    var token = new JwtSecurityToken(
+        //        issuer: _configuration["JWT:ValidIssuer"],
+        //        audience: _configuration["JWT:ValidAudience"],
+        //        expires: DateTime.Now.AddHours(3),
+        //        claims: authClaims,
+        //        signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+        //        );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        //    return new JwtSecurityTokenHandler().WriteToken(token);
+        //}
 
      
 

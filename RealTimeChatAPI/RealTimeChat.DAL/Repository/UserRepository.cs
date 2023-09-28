@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Google.Apis.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +10,14 @@ using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
+
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Providers.Entities;
+
 
 namespace RealTimeChat.DAL.Repository
 {
@@ -142,6 +143,66 @@ namespace RealTimeChat.DAL.Repository
             //        .ToListAsync();
 
             return (List<Domain.Models.User>)GetAll();
+        }
+
+        public async Task<LoginResponse> VerifyGoogleTokenAsync(string tokenId)
+        {
+            try
+            {
+                Console.WriteLine("Validating Google Token...");
+                var validPayload = await GoogleJsonWebSignature.ValidateAsync(tokenId);
+                Console.WriteLine($"Valid Google Token. Email: {validPayload.Email}");
+                var user = Get(u => u.Email == validPayload.Email);
+
+                //var user = await _userRepository.FindByEmailAsync(validPayload.Email);
+
+                if (user == null)
+                {
+                    //Create a new IdentityUser if not found in the repository
+                    var newUser = new IdentityUser
+                    {
+                        UserName = validPayload.GivenName,
+                        Email = validPayload.Email
+                    };
+                    var result = await _userManager.CreateAsync((User)newUser);
+
+                    if (!result.Succeeded)
+                    {
+                        foreach (var error in result.Errors)
+                        {
+                            Console.WriteLine($"Error creating user: {error.Description}");
+                        }
+                        return null;
+                    }
+
+                    user = (User)newUser;
+                }
+
+                // Generate or retrieve the authentication token
+                var token = GenerateJwtToken(user.Id,user.Name,user.Email); // Replace with your token generation logic
+
+                var userProfile = new UserProfile
+                {
+                    Id = user.Id,
+                    Name = user.UserName,
+                    Email = user.Email
+                };
+
+                var loginResponse = new LoginResponse
+                {
+                    Token = token,
+                    Profile = userProfile
+                };
+
+                Console.WriteLine("Login response generated successfully.");
+                return loginResponse;
+            }
+            catch (InvalidJwtException)
+            {
+                // Token validation failed
+                Console.WriteLine("Token validation failed.");
+                return null;
+            }
         }
 
     }

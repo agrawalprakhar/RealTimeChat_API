@@ -20,5 +20,7 @@ namespace RealTimeChat.DAL.Repository.IRepository
 
         Task<List<Domain.Models.User>> GetAllUsersAsync();
 
+        Task<LoginResponse> VerifyGoogleTokenAsync(string tokenId);
+
     }
 }

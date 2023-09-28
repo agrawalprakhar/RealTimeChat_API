@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using MinimalChatApplication.Middlewares;
 using RealTimeChat.DAL.Data;
 using RealTimeChat.DAL.Repository;
 using RealTimeChat.DAL.Repository.IRepository;
@@ -20,6 +21,7 @@ namespace RealTimeChatAPI
 
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<RequestLoggingMiddleware>();
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("JWT"));
 
             builder.Services.AddCors(options =>
@@ -45,7 +47,8 @@ namespace RealTimeChatAPI
              .AddEntityFrameworkStores<RealTimeChatContext>()
              .AddDefaultTokenProviders();
             builder.Services.AddScoped<IUserRepository,UserRepository>();
-
+            builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+            builder.Services.AddScoped<ILogs, LogRepository>();
 
 
 
@@ -98,6 +101,8 @@ namespace RealTimeChatAPI
 
 
             app.MapControllers();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.Run();
         }
