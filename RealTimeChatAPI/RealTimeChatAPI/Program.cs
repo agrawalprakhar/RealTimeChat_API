@@ -7,6 +7,7 @@ using RealTimeChat.DAL.Data;
 using RealTimeChat.DAL.Repository;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
+using RealTimeChatAPI.Hubs;
 using System.Text;
 
 namespace RealTimeChatAPI
@@ -21,6 +22,7 @@ namespace RealTimeChatAPI
 
 
             builder.Services.AddControllers();
+            builder.Services.AddSignalR();
             builder.Services.AddScoped<RequestLoggingMiddleware>();
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("JWT"));
 
@@ -31,7 +33,6 @@ namespace RealTimeChatAPI
                     builder.WithOrigins("http://localhost:4200") // Allow requests from this origin
                         .AllowAnyMethod()
                         .AllowAnyHeader()
-                        .AllowAnyMethod()
                         .AllowCredentials();
                 });
             });
@@ -103,6 +104,8 @@ namespace RealTimeChatAPI
             app.MapControllers();
 
             app.UseMiddleware<RequestLoggingMiddleware>();
+
+            app.MapHub<ChatHub>("/chatHub");
 
             app.Run();
         }

@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using RealTimeChat.DAL.Repository;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
+using RealTimeChatAPI.Hubs;
 using System.Security.Claims;
 
 namespace RealTimeChatAPI.Controllers
@@ -13,11 +15,14 @@ namespace RealTimeChatAPI.Controllers
     [Authorize]
     public class MessageController : ControllerBase
     {
-        private readonly IMessageRepository _messageRepository;
+        private readonly IMessageRepository _messageRepository ;
 
-        public MessageController(IMessageRepository messageRepository)
+        private readonly IHubContext<ChatHub> _chatHub;
+
+        public MessageController(IMessageRepository messageRepository, IHubContext<ChatHub> chatHub)
         {
             _messageRepository = messageRepository;
+            _chatHub = chatHub;
         }
 
 
@@ -41,6 +46,7 @@ namespace RealTimeChatAPI.Controllers
                 Content = message.Content,
                 Timestamp = message.Timestamp
             };
+            await _chatHub.Clients.All.SendAsync("ReceiveMessage", response);
 
             return Ok(response);
         }
@@ -74,6 +80,8 @@ namespace RealTimeChatAPI.Controllers
                 return NotFound(new { error = "Message not found or you are not allowed to edit it." });
             }
 
+            await _chatHub.Clients.All.SendAsync("ReceiveEditedMessage", messageId, editMessage.Content);
+
             return Ok(new
             {
                 success = true,
@@ -106,6 +114,8 @@ namespace RealTimeChatAPI.Controllers
             {
                 return NotFound(new { message = "Message not found or you are not allowed to delete it." });
             }
+
+            await _chatHub.Clients.All.SendAsync("ReceiveDeletedMessage", messageId);
 
             return Ok(new { message = "Message deleted successfully" });
         }

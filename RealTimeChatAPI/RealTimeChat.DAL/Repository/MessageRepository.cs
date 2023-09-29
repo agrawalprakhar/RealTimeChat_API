@@ -23,7 +23,7 @@ namespace RealTimeChat.DAL.Repository
         public async Task<Message> SendMessageAsync(string senderId, string receiverId, string content)
         {
             var message = new Message
-            {
+            {  
                 SenderId = senderId,
                 ReceiverId = receiverId,
                 Content = content,

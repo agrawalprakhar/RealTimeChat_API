@@ -26,3 +26,17 @@ C:\Users\pranj\OneDrive\Documents\Desktop\RealTimeChat\RealTimeChat_API\RealTime
 C:\Users\pranj\OneDrive\Documents\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.pdb
 C:\Users\pranj\OneDrive\Documents\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.genruntimeconfig.cache
 C:\Users\pranj\OneDrive\Documents\Desktop\RealTimeChat\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\ref\RealTimeChat.Domain.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.deps.json
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.runtimeconfig.json
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\bin\Debug\net7.0\RealTimeChat.Domain.pdb
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.csproj.AssemblyReference.cache
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.AssemblyInfoInputs.cache
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.AssemblyInfo.cs
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\refint\RealTimeChat.Domain.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.pdb
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\RealTimeChat.Domain.genruntimeconfig.cache
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChat.Domain\obj\Debug\net7.0\ref\RealTimeChat.Domain.dll
