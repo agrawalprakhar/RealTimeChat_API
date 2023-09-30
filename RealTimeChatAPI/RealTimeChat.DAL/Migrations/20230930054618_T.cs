@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RealTimeChat.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Prakhar : Migration
+    public partial class T : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,8 +32,8 @@ namespace RealTimeChat.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Timestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    IP = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RequestBody = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RequestBody = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>

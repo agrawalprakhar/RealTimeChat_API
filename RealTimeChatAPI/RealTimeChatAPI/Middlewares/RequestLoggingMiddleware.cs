@@ -21,6 +21,10 @@ namespace MinimalChatApplication.Middlewares
         {
             var userName = context.User.FindFirst(ClaimTypes.Name)?.Value;
             //Console.WriteLine(context.User);
+            if (userName==null)
+            {
+                userName = "";
+            }
 
             string IP = context.Connection.RemoteIpAddress?.ToString();
             string RequestBody = await getRequestBodyAsync(context.Request);

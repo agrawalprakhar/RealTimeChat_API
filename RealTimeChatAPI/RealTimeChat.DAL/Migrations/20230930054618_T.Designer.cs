@@ -12,8 +12,8 @@ using RealTimeChat.DAL.Data;
 namespace RealTimeChat.DAL.Migrations
 {
     [DbContext(typeof(RealTimeChatContext))]
-    [Migration("20230929045525_Prakhar")]
-    partial class Prakhar
+    [Migration("20230930054618_T")]
+    partial class T
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

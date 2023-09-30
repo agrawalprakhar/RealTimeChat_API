@@ -164,18 +164,18 @@ namespace RealTimeChat.DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("IP")
-                        .IsRequired()
+        
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestBody")
-                        .IsRequired()
+     
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Username")
-                        .IsRequired()
+              
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
