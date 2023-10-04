@@ -156,7 +156,7 @@ namespace RealTimeChatAPI.Controllers
 
         [HttpGet("search")]
         public async Task<IActionResult> SearchConversations([FromQuery] string query)
-        {
+         {
             
             
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -174,12 +174,13 @@ namespace RealTimeChatAPI.Controllers
 
                 if (searchResult != null && searchResult.Any())
                 {
-                    return Ok(new 
-                    {
+                return Ok(new { searchResult });
+                //return Ok(new 
+                //    {
                    
-                        Message = "Conversation searched successfully",
-                        Data = searchResult
-                    });
+                //        Message = "Conversation searched successfully",
+                //        Data = searchResult
+                //    });
                 }
                 else
                 {

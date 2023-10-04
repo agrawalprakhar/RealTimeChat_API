@@ -17,6 +17,6 @@ namespace RealTimeChat.DAL.Repository.IRepository
 
         Task<List<Message>> GetConversationHistoryAsync(ConversationRequest request, string currentUserId);
 
-        Task<IEnumerable<Message>> SearchConversationsAsync(string userId, string query);
+        Task<List<Message>> SearchConversationsAsync(string userId, string query);
     }
 }

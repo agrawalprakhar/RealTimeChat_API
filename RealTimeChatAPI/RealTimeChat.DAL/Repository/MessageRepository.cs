@@ -110,7 +110,7 @@ namespace RealTimeChat.DAL.Repository
             }
         }
 
-        public async Task<IEnumerable<Message>> SearchConversationsAsync(string userId, string query)
+        public async Task<List<Message>> SearchConversationsAsync(string userId, string query)
         {
             var searchedConversation = await _context.Messages
               .Where(m => (m.SenderId == userId || m.ReceiverId == userId) && m.Content.Contains(query))
