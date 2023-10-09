@@ -12,11 +12,11 @@ namespace RealTimeChat.Domain.Models
     {
         [Key]
         public int Id { get; set; }
-
+        [ForeignKey("Sender")]
         [Required]
         public string SenderId { get; set; }
 
-   
+        [ForeignKey("Receiver")]
         [Required]
         public string ReceiverId { get; set; }
         [Required]
@@ -25,6 +25,9 @@ namespace RealTimeChat.Domain.Models
 
 
         // Navigation properties
-     
+       
+        public User Sender { get; set; }
+        public User Receiver { get; set; }
+
     }
 }

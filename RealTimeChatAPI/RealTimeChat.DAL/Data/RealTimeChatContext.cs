@@ -33,7 +33,17 @@ namespace RealTimeChat.DAL.Data
 
 
 
-            ;
+            builder.Entity<Message>()
+             .HasOne(m => m.Receiver)
+             .WithMany()
+             .HasForeignKey(m => m.ReceiverId)
+             .OnDelete(DeleteBehavior.NoAction);
+            //configure sender
+            builder.Entity<Message>()
+              .HasOne(m => m.Sender)
+              .WithMany()
+              .HasForeignKey(m => m.SenderId)
+              .OnDelete(DeleteBehavior.NoAction);
         }
         public DbSet<User> Users { get; set; }
 
