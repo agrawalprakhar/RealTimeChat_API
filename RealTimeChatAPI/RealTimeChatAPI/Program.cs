@@ -37,6 +37,7 @@ namespace RealTimeChatAPI
                 });
             });
 
+            builder.Services.AddHttpContextAccessor();
 
             ConfigurationManager Configuration = builder.Configuration;
 

@@ -814,3 +814,7 @@ C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTi
 C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\obj\Debug\net7.0\RealTimeChatAPI.genruntimeconfig.cache
 C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\obj\Debug\net7.0\ref\RealTimeChatAPI.dll
 C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\bin\Debug\net7.0\System.Net.WebSockets.WebSocketProtocol.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\bin\Debug\net7.0\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\bin\Debug\net7.0\Microsoft.Owin.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\bin\Debug\net7.0\Microsoft.Owin.Security.dll
+C:\Users\admin\Documents\ChatApplication\RealTimeChat_API\RealTimeChatAPI\RealTimeChatAPI\bin\Debug\net7.0\Owin.dll

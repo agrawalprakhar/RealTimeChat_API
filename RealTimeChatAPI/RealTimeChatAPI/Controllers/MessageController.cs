@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using RealTimeChat.DAL.Repository;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
@@ -24,7 +25,6 @@ namespace RealTimeChatAPI.Controllers
             _messageRepository = messageRepository;
             _chatHub = chatHub;
         }
-
 
         [HttpPost]
         public async Task<ActionResult<sendMessageResponse>> SendMessages(sendMessageRequest request)
@@ -119,6 +119,10 @@ namespace RealTimeChatAPI.Controllers
 
             return Ok(new { message = "Message deleted successfully" });
         }
+       
+
+   
+
 
         [HttpGet]
         public async Task<IActionResult> GetConversationHistory([FromQuery] ConversationRequest request)

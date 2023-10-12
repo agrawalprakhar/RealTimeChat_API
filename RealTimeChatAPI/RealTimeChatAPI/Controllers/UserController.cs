@@ -25,6 +25,8 @@ using Azure.Core;
 using Google.Apis.Auth;
 using RealTimeChatAPI;
 using Microsoft.Extensions.Options;
+using RealTimeChatAPI.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MinimalChatApplication.Controllers
 {
@@ -35,12 +37,14 @@ namespace MinimalChatApplication.Controllers
         private readonly IUserRepository _userRepo;
         private readonly IConfiguration _configuration;
         private readonly AppSettings _appSettings;
+        private readonly IHubContext<ChatHub> _chatHub;
 
-        public UsersController(IUserRepository db, IConfiguration configuration,IOptions<AppSettings> appSettings)
+        public UsersController(IHubContext<ChatHub> chatHub,IUserRepository db, IConfiguration configuration,IOptions<AppSettings> appSettings)
         {
             _userRepo = db;
             _configuration = configuration;
             _appSettings = appSettings.Value;
+            _chatHub = chatHub;
          
         }
 
@@ -105,6 +109,7 @@ namespace MinimalChatApplication.Controllers
 
             if (success)
             {
+                await _chatHub.Clients.User(user.Id).SendAsync("SetUserIdentifier", user.Id);
                 return Ok(response);
             }
             else
