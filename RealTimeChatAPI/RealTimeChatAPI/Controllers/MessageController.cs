@@ -40,7 +40,7 @@ namespace RealTimeChatAPI.Controllers
 
             var response = new sendMessageResponse
             {
-                MessageId = message.Id,
+                Id = message.Id,
                 SenderId = message.SenderId,
                 ReceiverId = message.ReceiverId,
                 Content = message.Content,
