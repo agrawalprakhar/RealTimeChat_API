@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿using Google;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using NuGet.Protocol.Plugins;
+using RealTimeChat.DAL.Data;
 using RealTimeChat.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,8 +12,15 @@ namespace RealTimeChatAPI.Hubs
 {
     public class ChatHub : Hub
     {
+        private readonly RealTimeChatContext _context;
+
+
         private static readonly Dictionary<string, DateTime> LastSeenTimestamps = new Dictionary<string, DateTime>();
         private static readonly List<string> ConnectedUsers = new List<string>();
+        public ChatHub(RealTimeChatContext context)
+        {
+            _context = context;
+        }
 
         public async Task SendMessage(Message message)
         {
@@ -46,8 +56,22 @@ namespace RealTimeChatAPI.Hubs
             if (!ConnectedUsers.Contains(user))
             {
                 ConnectedUsers.Add(user);
+                // Retrieve last seen timestamp from the database
+                // Fetch last seen timestamps for all users from the database
+                var allLastSeenRecords = await _context.LastSeenRecords.ToDictionaryAsync(x => x.UserId, x => x.Timestamp);
+                var lastSeenRecord = await _context.LastSeenRecords.FirstOrDefaultAsync(x => x.UserId == user);
 
-                LastSeenTimestamps[user] = DateTime.UtcNow;
+                if (lastSeenRecord != null)
+                {
+                    LastSeenTimestamps[user] = lastSeenRecord.Timestamp;
+                }
+                else
+                {
+                    LastSeenTimestamps[user] = DateTime.Now;
+                }
+
+                //LastSeenTimestamps[user] = DateTime.UtcNow;
+      
 
                 Count++;
                 await base.OnConnectedAsync();
@@ -56,7 +80,7 @@ namespace RealTimeChatAPI.Hubs
                 await Clients.Caller.SendAsync("SetUserIdentifier", user);
                 await Clients.All.SendAsync("updateCount", Count);
                 await Clients.All.SendAsync("ReceiveConnectedUsers", ConnectedUsers);
-                await Clients.Caller.SendAsync("ReceiveLastSeenTimestamps", LastSeenTimestamps);
+                await Clients.Caller.SendAsync("ReceiveLastSeenTimestamps", allLastSeenRecords);
             }
         }
     
@@ -69,8 +93,21 @@ namespace RealTimeChatAPI.Hubs
             {
                 ConnectedUsers.Remove(user);
 
-                // Update last seen timestamp for the disconnected user
-                LastSeenTimestamps[user] = DateTime.UtcNow;
+                // Update last seen timestamp in the database
+                var lastSeenRecord = await _context.LastSeenRecords.FirstOrDefaultAsync(x => x.UserId == user);
+                if (lastSeenRecord != null)
+                {
+                    lastSeenRecord.Timestamp = DateTime.Now;
+                }
+                else
+                {
+                    _context.LastSeenRecords.Add(new LastSeen { UserId = user, Timestamp = DateTime.Now });
+                }
+
+                //// Update last seen timestamp for the disconnected user
+                //LastSeenTimestamps[user] = DateTime.UtcNow;
+
+                await _context.SaveChangesAsync();
 
                 Count--;
                 await base.OnDisconnectedAsync(exception);

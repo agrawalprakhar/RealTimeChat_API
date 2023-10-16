@@ -50,5 +50,8 @@ namespace RealTimeChat.DAL.Data
         public DbSet<Message> Messages { get; set; }
 
         public DbSet<Logs> Logs { get; set; }
+
+        public DbSet<LastSeen> LastSeenRecords { get; set; }
+
     }
 }
