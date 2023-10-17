@@ -13,3 +13,6 @@ namespace RealTimeChat.Domain.Models
         public DateTime Timestamp { get; set; }
     }
 }
+
+
+
