@@ -80,7 +80,7 @@ namespace RealTimeChatAPI.Hubs
                 await Clients.Caller.SendAsync("SetUserIdentifier", user);
                 await Clients.All.SendAsync("updateCount", Count);
                 await Clients.All.SendAsync("ReceiveConnectedUsers", ConnectedUsers);
-                await Clients.Caller.SendAsync("ReceiveLastSeenTimestamps", allLastSeenRecords);
+                await Clients.All.SendAsync("ReceiveLastSeenTimestamps", allLastSeenRecords);
             }
         }
     
@@ -111,9 +111,9 @@ namespace RealTimeChatAPI.Hubs
 
                 Count--;
                 await base.OnDisconnectedAsync(exception);
-                await Clients.Others.SendAsync("updateCount", Count);
-                await Clients.Caller.SendAsync("ReceiveConnectedUsers", ConnectedUsers);
-                await Clients.Caller.SendAsync("ReceiveLastSeenTimestamps", LastSeenTimestamps);
+                await Clients.All.SendAsync("updateCount", Count);
+                await Clients.All.SendAsync("ReceiveConnectedUsers", ConnectedUsers);
+                await Clients.All.SendAsync("ReceiveLastSeenTimestamps", LastSeenTimestamps);
             }
         }
    
@@ -123,15 +123,6 @@ namespace RealTimeChatAPI.Hubs
             await Clients.Others.SendAsync("ReceiveTypingIndicator", userId,receiverId, isTyping);
         }
 
-        public async Task JoinGroup(string userId)
-        {
-            await Groups.AddToGroupAsync(Context.ConnectionId, userId);
-        }
-
-        public async Task LeaveGroup(string userId)
-        {
-            await Groups.RemoveFromGroupAsync(Context.ConnectionId, userId);
-        }
 
 
       
