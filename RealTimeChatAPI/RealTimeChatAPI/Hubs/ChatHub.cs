@@ -67,7 +67,7 @@ namespace RealTimeChatAPI.Hubs
                 }
                 else
                 {
-                    LastSeenTimestamps[user] = DateTime.Now;
+                    _context.LastSeenRecords.Add(new LastSeen { UserId = user, Timestamp = DateTime.Now });
                 }
 
                 //LastSeenTimestamps[user] = DateTime.UtcNow;
