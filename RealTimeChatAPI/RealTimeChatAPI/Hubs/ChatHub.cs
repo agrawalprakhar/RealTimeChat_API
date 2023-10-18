@@ -106,14 +106,14 @@ namespace RealTimeChatAPI.Hubs
 
                 //// Update last seen timestamp for the disconnected user
                 //LastSeenTimestamps[user] = DateTime.UtcNow;
-
                 await _context.SaveChangesAsync();
+                var allLastSeenRecords = await _context.LastSeenRecords.ToDictionaryAsync(x => x.UserId, x => x.Timestamp);
 
                 Count--;
                 await base.OnDisconnectedAsync(exception);
                 await Clients.All.SendAsync("updateCount", Count);
                 await Clients.All.SendAsync("ReceiveConnectedUsers", ConnectedUsers);
-                await Clients.All.SendAsync("ReceiveLastSeenTimestamps", LastSeenTimestamps);
+                await Clients.All.SendAsync("ReceiveLastSeenTimestamps", allLastSeenRecords);
             }
         }
    
