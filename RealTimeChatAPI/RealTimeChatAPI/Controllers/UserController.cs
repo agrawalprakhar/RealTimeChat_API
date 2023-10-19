@@ -127,55 +127,7 @@ namespace MinimalChatApplication.Controllers
 
             return Ok(user);
         }
-        //public async Task<IActionResult> LoginWithGoogle([FromBody] string credential)
-        //{
-        //    var settings = new GoogleJsonWebSignature.ValidationSettings()
-        //    {
-        //        Audience = new List<string> { this._appSettings.GoogleClientId },
-
-        //    };
-
-        //    var payload = await GoogleJsonWebSignature.ValidateAsync(credential, settings);
-
-        //    var UserList = await _userRepo.GetAllUsersAsync();
-
-        //    var user = UserList.Where(x =>x.Name == payload.Name).FirstOrDefault();
-
-        //    if (user != null)
-        //    {
-        //        return Ok(JWTGenerator(user));
-        //    }
-        //    else
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //}
-
-        //private object? JWTGenerator(RealTimeChat.Domain.Models.User user)
-        //{
-        //    var authClaims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name,user.Name),
-        //            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-        //            new Claim(ClaimTypes.Email,user.Email),
-        //            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-        //        };
-
-        //    var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-
-
-        //    var token = new JwtSecurityToken(
-        //        issuer: _configuration["JWT:ValidIssuer"],
-        //        audience: _configuration["JWT:ValidAudience"],
-        //        expires: DateTime.Now.AddHours(3),
-        //        claims: authClaims,
-        //        signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-        //        );
-
-        //    return new JwtSecurityTokenHandler().WriteToken(token);
-        //}
+      
 
      
 
