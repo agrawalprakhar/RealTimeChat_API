@@ -72,7 +72,7 @@ namespace RealTimeChat.DAL.Repository
 
         public async Task<(bool success, string message, LoginResponse response)> LoginAsync(loginRequest loginData)
         {
-           // var user = _userRepo.Get(u => u.Email == loginData.Email);
+
             var user =  Get(u => u.Email == loginData.Email);
             
 
@@ -127,20 +127,11 @@ namespace RealTimeChat.DAL.Repository
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        //public async Task<IEnumerable<Domain.Models.User>> GetUsers(string currentUserId)
-        //{
-        //    if (currentUserId == null)
-        //    {
-        //        return null;
-        //    }
-        //    return await _db.Users.Where(u => u.Id != currentUserId).ToListAsync();
-        //}
+    
 
         public async Task<List<Domain.Models.User>> GetAllUsersAsync()
         {
-            //    return await _db.Users
-            //        .Where(u => u.Id != (currentUserId))
-            //        .ToListAsync();
+    
 
             return (List<Domain.Models.User>)GetAll();
         }
@@ -149,22 +140,21 @@ namespace RealTimeChat.DAL.Repository
         {
             try
             {
-                Console.WriteLine("Validating Google Token...");
+                
                 var validPayload = await GoogleJsonWebSignature.ValidateAsync(tokenId);
-                Console.WriteLine($"Valid Google Token. Email: {validPayload.Email}");
                 var user = Get(u => u.Email == validPayload.Email);
-
-                //var user = await _userRepository.FindByEmailAsync(validPayload.Email);
 
                 if (user == null)
                 {
                     //Create a new IdentityUser if not found in the repository
-                    var newUser = new IdentityUser
+                    var newUser = new User
                     {
                         UserName = validPayload.GivenName,
-                        Email = validPayload.Email
+                        Email = validPayload.Email,
+                        Name = validPayload.Name,
+                        Password = "Password@123",
                     };
-                    var result = await _userManager.CreateAsync((User)newUser);
+                    var result = await _userManager.CreateAsync(newUser);
 
                     if (!result.Succeeded)
                     {
@@ -175,7 +165,7 @@ namespace RealTimeChat.DAL.Repository
                         return null;
                     }
 
-                    user = (User)newUser;
+                    user = newUser;
                 }
 
                 // Generate or retrieve the authentication token
