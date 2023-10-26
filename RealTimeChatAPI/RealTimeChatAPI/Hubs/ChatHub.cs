@@ -123,9 +123,14 @@ namespace RealTimeChatAPI.Hubs
             await Clients.Others.SendAsync("ReceiveTypingIndicator", userId,receiverId, isTyping);
         }
 
+        public async Task UpdateStatus(string userId, string statusMessage)
+        {
+            // Update status message and broadcast it to all clients
+            // You can save the statusMessage in your database or repository if necessary
+            await Clients.All.SendAsync("ReceiveStatusUpdate", userId, statusMessage);
+        }
 
 
-      
         private string GetUserName()
         {
             var query = Context.GetHttpContext().Request.Query;

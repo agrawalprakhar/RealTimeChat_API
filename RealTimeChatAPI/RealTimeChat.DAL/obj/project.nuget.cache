@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1JrflRNaOGXhMNY21uZEe3LqKWH6tSx67N2NcrpwS3CdBgavgdJ7f7Gr7ZwbzVT/bnDwytUcBL2Qz/lyt4JKhA==",
+  "dgSpecHash": "B+b48ic7JfeVM+ik6iQErPMESgGI5jOIJbnZOHHhj59ZP4xghupW38o04hOT2YfXrKwbH5QEeRS3JxbeNUYMJg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\Documents\\ChatApplication\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
+  "projectFilePath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

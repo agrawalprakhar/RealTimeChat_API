@@ -4728,11 +4728,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Documents\\ChatApplication\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
       "projectName": "RealTimeChat.Domain",
-      "projectPath": "C:\\Users\\admin\\Documents\\ChatApplication\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+      "projectPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Documents\\ChatApplication\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
+      "outputPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",

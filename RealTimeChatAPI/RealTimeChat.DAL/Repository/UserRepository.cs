@@ -127,13 +127,26 @@ namespace RealTimeChat.DAL.Repository
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-    
+        public async Task<User> GetUserAsync(string Id)
+        {
+            return await _db.Users.FindAsync(Id);
+        }
 
         public async Task<List<Domain.Models.User>> GetAllUsersAsync()
         {
     
 
             return (List<Domain.Models.User>)GetAll();
+        }
+
+        public async Task UpdateStatusAsync(string Id, string statusMessage)
+        {
+            var user = await _db.Users.FindAsync(Id);
+            if (user != null)
+            {
+                user.StatusMessage = statusMessage;
+                await _db.SaveChangesAsync();
+            }
         }
 
         public async Task<LoginResponse> VerifyGoogleTokenAsync(string tokenId)

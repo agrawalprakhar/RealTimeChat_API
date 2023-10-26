@@ -22,6 +22,8 @@ namespace RealTimeChat.Domain.Models
         [Required]
         public string Password { get; set; }
 
+        public string StatusMessage { get; set; }
+
 
     }
 }

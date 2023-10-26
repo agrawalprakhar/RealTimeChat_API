@@ -157,5 +157,39 @@ namespace MinimalChatApplication.Controllers
 
             return Ok(filteredUsers);
         }
+
+        [HttpGet("{Id}")]
+        public async Task<ActionResult<User>> GetUser(string Id)
+        {
+            var user = await _userRepo.GetUserAsync(Id);
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+            return Ok(user);
+        }
+
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> UpdateStatus(string Id, [FromBody]  StatusMessage statusMessage)
+        {
+            try
+            {
+            await _userRepo.UpdateStatusAsync(Id, statusMessage.Content);
+            await _chatHub.Clients.All.SendAsync("ReceiveStatusUpdate", Id, statusMessage.Content);
+
+                return Ok(new
+                {
+                   
+                   statusMessage = statusMessage.Content,
+               
+                });
+              
+
+            }
+            catch (Exception ex)
+             {
+                return BadRequest($"Error updating status: {ex.Message}");
+            }
+        }
     }
 }

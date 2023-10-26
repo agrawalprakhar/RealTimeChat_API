@@ -12,8 +12,6 @@ namespace RealTimeChat.DAL.Repository.IRepository
    public interface IUserRepository : IRepository<User>
     {
 
-
-
          Task<(bool success, string message, RegistrationDto userDto)> SignupAsync(UserRegistration signupModel);
 
         Task<(bool success, string message, LoginResponse response)> LoginAsync(loginRequest loginData);
@@ -22,5 +20,7 @@ namespace RealTimeChat.DAL.Repository.IRepository
 
         Task<LoginResponse> VerifyGoogleTokenAsync(string tokenId);
 
+        Task<User> GetUserAsync(string Id);
+        Task UpdateStatusAsync(string Id, string statusMessage);
     }
 }
