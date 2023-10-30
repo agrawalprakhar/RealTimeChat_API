@@ -31,13 +31,16 @@ namespace RealTimeChat.DAL.Repository
         public UserRepository(RealTimeChatContext db,UserManager<Domain.Models.User> userManager, SignInManager<Domain.Models.User> signInManager, IConfiguration configuration):base(db)
         {
 
-          _db = db;
+            _db = db;
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
         }
 
-
+        // SignupAsync Method
+        // Description: This asynchronous method handles user registration. It creates a new user entity based on the provided signupModel
+        // and attempts to create the user using the UserManager. It returns a tuple indicating the success status, a message, and a
+        // RegistrationDto object containing user information upon successful registration.
         public async Task<(bool success, string message, RegistrationDto userDto)> SignupAsync(UserRegistration signupModel)
         {
 
@@ -47,7 +50,7 @@ namespace RealTimeChat.DAL.Repository
                 Email = signupModel.Email,
                 UserName = signupModel.Email,
                 Password = signupModel.Password,
-
+                StatusMessage = "",
 
             };
 
@@ -61,21 +64,20 @@ namespace RealTimeChat.DAL.Repository
             {
                 Id=user.Id,
                 Name = user.Name,
-                Email = user.Email,
-              
-               
+                Email = user.Email  
             };
             return (true, "Registration successful.", userDto);
         }
 
-      
-
+        // LoginAsync Method
+        // Description: This asynchronous method handles user authentication. It checks the provided loginData (email and password) against
+        // the existing user data. If the provided credentials are valid, it generates a JWT token, constructs a UserProfile object, and 
+        // creates a LoginResponse object containing the user's profile and the generated token. It returns a tuple indicating the 
+        // success status, a message, and a LoginResponse object upon successful authentication.
         public async Task<(bool success, string message, LoginResponse response)> LoginAsync(loginRequest loginData)
         {
 
             var user =  Get(u => u.Email == loginData.Email);
-            
-
             if (user != null && await _userManager.CheckPasswordAsync(user, loginData.Password))
             {
                 var token = GenerateJwtToken(user.Id, user.Name, user.Email);
@@ -88,19 +90,19 @@ namespace RealTimeChat.DAL.Repository
 
                 var response = new LoginResponse
                 {
-
                     Profile = userProfile,
                     Token = token,
                 };
-
                 return (true, "Authentication successful.", response);
             }
-
             return (false, "Authentication failed.", null);
-           
-
         }
 
+
+        // GenerateJwtToken Method
+        // Description: This private method generates a JSON Web Token (JWT) for a user based on the provided user ID, name, and email. 
+        // The JWT contains specific claims such as name, name identifier, email, and a unique identifier (Jti) for additional security.
+        // The token has a specified expiration time, issuer, audience, and is signed using a symmetric security key.
         private string GenerateJwtToken(string id, string name, string email)
         {
          
@@ -113,9 +115,6 @@ namespace RealTimeChat.DAL.Repository
                 };
 
             var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
-
-           
-           
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
@@ -127,18 +126,28 @@ namespace RealTimeChat.DAL.Repository
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
+        // GetUserAsync Method
+        // Description: This asynchronous method retrieves a user from the database based on the provided user ID.
+        // The method performs an asynchronous database query to find a user entity with the specified ID.
+        // If a matching user is found, it is returned; otherwise, null is returned.
         public async Task<User> GetUserAsync(string Id)
         {
             return await _db.Users.FindAsync(Id);
         }
 
+        // GetAllUsersAsync Method
+        // Description: This asynchronous method retrieves all users from the database.
+        // The method performs an asynchronous database query to fetch all user entities.
+        // The method returns a list of user entities.
         public async Task<List<Domain.Models.User>> GetAllUsersAsync()
         {
-    
-
             return (List<Domain.Models.User>)GetAll();
         }
 
+        // UpdateStatusAsync Method
+        // Description: This asynchronous method updates the status message of a user in the database.
+        // The method takes a user ID and a new status message as input parameters.
+        // It retrieves the user entity based on the provided ID, updates the status message, and saves the changes to the database.
         public async Task UpdateStatusAsync(string Id, string statusMessage)
         {
             var user = await _db.Users.FindAsync(Id);
@@ -149,23 +158,29 @@ namespace RealTimeChat.DAL.Repository
             }
         }
 
+        // VerifyGoogleTokenAsync Method
+        // Description: This asynchronous method verifies a Google authentication token.
+        // The method takes a Google token ID as input parameter and validates it.
+        // If the token is valid, it checks if the corresponding user exists in the database. 
+        // If not, it creates a new user based on the Google token information.
+        // Finally, it generates an authentication token and returns a LoginResponse containing the token and user profile information.
         public async Task<LoginResponse> VerifyGoogleTokenAsync(string tokenId)
         {
             try
             {
-                
                 var validPayload = await GoogleJsonWebSignature.ValidateAsync(tokenId);
                 var user = Get(u => u.Email == validPayload.Email);
 
                 if (user == null)
                 {
-                    //Create a new IdentityUser if not found in the repository
+                    //Create a new User if not found in the repository
                     var newUser = new User
                     {
                         UserName = validPayload.GivenName,
                         Email = validPayload.Email,
                         Name = validPayload.Name,
                         Password = "Password@123",
+                        StatusMessage="",
                     };
                     var result = await _userManager.CreateAsync(newUser);
 
@@ -182,8 +197,7 @@ namespace RealTimeChat.DAL.Repository
                 }
 
                 // Generate or retrieve the authentication token
-                var token = GenerateJwtToken(user.Id,user.Name,user.Email); // Replace with your token generation logic
-
+                var token = GenerateJwtToken(user.Id,user.Name,user.Email); 
                 var userProfile = new UserProfile
                 {
                     Id = user.Id,
@@ -196,14 +210,10 @@ namespace RealTimeChat.DAL.Repository
                     Token = token,
                     Profile = userProfile
                 };
-
-                Console.WriteLine("Login response generated successfully.");
                 return loginResponse;
             }
             catch (InvalidJwtException)
             {
-                // Token validation failed
-                Console.WriteLine("Token validation failed.");
                 return null;
             }
         }

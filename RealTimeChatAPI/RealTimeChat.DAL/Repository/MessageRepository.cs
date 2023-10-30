@@ -19,7 +19,8 @@ namespace RealTimeChat.DAL.Repository
             _context = db;
         }
 
-
+        // SendMessageAsync Method
+        // Description: This asynchronous method creates a new message, saves it to the database, and returns the created message.
         public async Task<Message> SendMessageAsync(string senderId, string receiverId, string content)
         {
             var message = new Message
@@ -37,31 +38,31 @@ namespace RealTimeChat.DAL.Repository
         }
 
 
-
+        // EditMessageAsync Method
+        // Description: This asynchronous method edits an existing message's content in the database.
         public async Task<bool> EditMessageAsync(int messageId, string userId, string newContent)
         {
             var existingMessage = await _context.Messages.FirstOrDefaultAsync(m => m.Id == messageId && (m.SenderId == userId || m.ReceiverId == userId));
 
             if (existingMessage == null)
             {
-                return false; // Message not found or unauthorized access
+                return false;
             }
 
-            // Validate the request content
             if (string.IsNullOrWhiteSpace(newContent))
             {
-                return false; // Invalid message content
+                return false; 
             }
 
-            // Update the message content
             existingMessage.Content = newContent;
 
-            // Save the changes to the database
             await _context.SaveChangesAsync();
 
-            return true; // Message edited successfully
+            return true; 
         }
 
+        // DeleteMessageAsync Method
+        // Description: This asynchronous method deletes a message from the database based on its ID and the sender's user ID
         public async Task<bool> DeleteMessageAsync(int messageId, string userId)
         {
             var message = await _context.Messages
@@ -70,15 +71,17 @@ namespace RealTimeChat.DAL.Repository
 
             if (message == null)
             {
-                return false; // Message not found or unauthorized access
+                return false; 
             }
 
             _context.Messages.Remove(message);
             await _context.SaveChangesAsync();
 
-            return true; // Message deleted successfully
+            return true; 
         }
 
+        // GetConversationHistoryAsync Method
+        // Description: This asynchronous method retrieves a list of messages representing the conversation history between two users based on the provided ConversationRequest object and the current user's ID.
         public async Task<List<Message>> GetConversationHistoryAsync(ConversationRequest request, string currentUserId)
         {
             try
@@ -110,6 +113,8 @@ namespace RealTimeChat.DAL.Repository
             }
         }
 
+        // SearchConversationsAsync Method
+        // Description: This asynchronous method searches for messages in conversations involving the specified user that contain a specific query string.
         public async Task<List<Message>> SearchConversationsAsync(string userId, string query)
         {
             var searchedConversation = await _context.Messages
@@ -128,8 +133,5 @@ namespace RealTimeChat.DAL.Repository
 
             return message;
         }
-
-
-
     }
 }

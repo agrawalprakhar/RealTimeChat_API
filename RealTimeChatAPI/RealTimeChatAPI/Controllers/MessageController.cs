@@ -26,6 +26,11 @@ namespace RealTimeChatAPI.Controllers
             _chatHub = chatHub;
         }
 
+        // Send Messages Method
+        // Description: This HTTP POST method allows users to send messages. It receives a request containing the receiver's ID and the 
+        // message content. The method validates the request, sends the message to the specified receiver, and broadcasts the sent message 
+        // to all connected clients using SignalR.
+        // This method is accessible via a POST request to the corresponding route.
         [HttpPost]
         public async Task<ActionResult<sendMessageResponse>> SendMessages(sendMessageRequest request)
         {
@@ -47,10 +52,13 @@ namespace RealTimeChatAPI.Controllers
                 Timestamp = message.Timestamp
             };
             await _chatHub.Clients.All.SendAsync("ReceiveMessage", response);
-
             return Ok(response);
         }
 
+        // GetCurrentUserId Method
+        // Description: This method retrieves the unique identifier (ID) of the currently authenticated user from the HttpContext. 
+        // It accesses the user's claims to find the claim with the type "NameIdentifier," which typically stores the user's ID.
+        // The method returns the current user's ID as a string.
         private string GetCurrentUserId()
         {
             var currentUser = HttpContext.User;
@@ -58,6 +66,9 @@ namespace RealTimeChatAPI.Controllers
             return currentUserId;
         }
 
+        // EditMessage Method
+        // Description: This method handles the PUT request to edit a specific message. It verifies the current user's authorization,
+        // validates the request parameters, edits the message using the message repository, and broadcasts the edited message to all clients.
         [HttpPut("{messageId}")]
         public async Task<IActionResult> EditMessage(int messageId, [FromBody] EditMessage editMessage)
         {
@@ -90,14 +101,15 @@ namespace RealTimeChatAPI.Controllers
                 {
                     messageId,
                     senderId = userId,
-                 
                     content = editMessage.Content,
-                    timestamp = DateTime.Now // You can update the timestamp here if needed
+                    timestamp = DateTime.Now 
                 }
             });
         }
 
-
+        // DeleteMessage Method
+        // Description: This method handles the DELETE request to delete a specific message. It verifies the current user's authorization,
+        // attempts to delete the message using the message repository, and broadcasts the deleted message ID to all clients.
         [HttpDelete("{messageId}")]
         public async Task<IActionResult> DeleteMessage(int messageId)
         {
@@ -119,11 +131,12 @@ namespace RealTimeChatAPI.Controllers
 
             return Ok(new { message = "Message deleted successfully" });
         }
-       
-
-   
 
 
+        // GetConversationHistory Method
+        // Description: This method handles the GET request to retrieve the conversation history between the current user and another user.
+        // It verifies the current user's authorization, retrieves the conversation history using the message repository,
+        // and returns the messages as a response.
         [HttpGet]
         public async Task<IActionResult> GetConversationHistory([FromQuery] ConversationRequest request)
         {
@@ -156,13 +169,15 @@ namespace RealTimeChatAPI.Controllers
             }
         }
 
-        
 
+        // SearchConversations Method
+        // Description: This method handles the GET request to search for conversations based on a query string.
+        // It verifies the current user's authorization, performs the search operation using the message repository,
+        // and returns the search results as a response.
         [HttpGet("search")]
         public async Task<IActionResult> SearchConversations([FromQuery] string query)
          {
-            
-            
+         
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 if (userId == null)
                 {
@@ -179,12 +194,6 @@ namespace RealTimeChatAPI.Controllers
                 if (searchResult != null && searchResult.Any())
                 {
                 return Ok(new { searchResult });
-                //return Ok(new 
-                //    {
-                   
-                //        Message = "Conversation searched successfully",
-                //        Data = searchResult
-                //    });
                 }
                 else
                 {
@@ -195,8 +204,6 @@ namespace RealTimeChatAPI.Controllers
                         
                     });
                 }
-            
-            
         }
 
     }

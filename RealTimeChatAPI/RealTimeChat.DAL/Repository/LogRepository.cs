@@ -18,6 +18,8 @@ namespace RealTimeChat.DAL.Repository
             _context = context;
         }
 
+        // GetLogs Method
+        // Description: This method retrieves log entries based on optional start and end timestamps.
         public List<Logs> GetLogs(DateTime? startTime = null, DateTime? endTime = null)
         {
             var logsQuery = _context.Logs.AsQueryable();
