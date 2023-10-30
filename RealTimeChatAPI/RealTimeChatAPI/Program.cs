@@ -18,12 +18,12 @@ namespace RealTimeChatAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-
             builder.Services.AddControllers();
+
             builder.Services.AddSignalR();
+
             builder.Services.AddScoped<RequestLoggingMiddleware>();
+
             builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("JWT"));
 
             builder.Services.AddCors(options =>
@@ -40,24 +40,19 @@ namespace RealTimeChatAPI
             builder.Services.AddHttpContextAccessor();
 
             ConfigurationManager Configuration = builder.Configuration;
-
-            //configuring db path
             builder.Services.AddDbContext<RealTimeChatContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("RealTimeChatContext")));
 
            builder.Services.AddIdentity<User, IdentityRole>()
              .AddEntityFrameworkStores<RealTimeChatContext>()
              .AddDefaultTokenProviders();
+
             builder.Services.AddScoped<IUserRepository,UserRepository>();
+
             builder.Services.AddScoped<IMessageRepository, MessageRepository>();
+
             builder.Services.AddScoped<ILogs, LogRepository>();
 
-
-
-
-            // Adding Jwt Bearer
-            // Add JWT authentication
-            // Adding Authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -78,10 +73,9 @@ namespace RealTimeChatAPI
                  };
              });
 
-
-
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
@@ -90,17 +84,17 @@ namespace RealTimeChatAPI
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
+
                 app.UseSwaggerUI();
             }
 
             app.UseHttpsRedirection();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseCors("AllowLocalhost4200");
-
-
 
             app.MapControllers();
 

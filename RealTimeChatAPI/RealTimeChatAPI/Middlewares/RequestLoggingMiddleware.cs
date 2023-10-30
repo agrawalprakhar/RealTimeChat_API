@@ -17,10 +17,14 @@ namespace MinimalChatApplication.Middlewares
             _dbcontext = dbcontext;
         }
 
+        // InvokeAsync Method
+        // Description: This middleware method logs incoming requests along with IP address, username (if available),
+        // request timestamp, and request body. The logged information is then stored in a database.
+        // The method also passes the incoming request to the next middleware in the pipeline.
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             var userName = context.User.FindFirst(ClaimTypes.Name)?.Value;
-            //Console.WriteLine(context.User);
+ 
             if (userName==null)
             {
                 userName = "";
@@ -48,6 +52,10 @@ namespace MinimalChatApplication.Middlewares
 
             await next(context);
         }
+
+        // getRequestBodyAsync Method
+        // Description: This asynchronous method reads the request body content and returns it as a string.
+        // It also ensures that the request body stream is rewound to its original position after reading.
         public async Task<string> getRequestBodyAsync(HttpRequest req)
         {
             req.EnableBuffering();

@@ -48,10 +48,11 @@ namespace MinimalChatApplication.Controllers
          
         }
 
-
-    
-
-
+        // Signup Method
+        // Description: This HTTP POST method handles user registration. It expects a JSON object containing user registration data.
+        // If the request data is valid and the user is successfully registered, it returns a success response with the registered user's information.
+        // If the email provided in the registration request is already registered, it returns a conflict response.
+        // If there are any validation errors or registration fails, it returns a bad request response with an error message.
         // POST: api/register
         [HttpPost("/api/register")]
         public async Task<IActionResult> Signup(UserRegistration request)
@@ -60,16 +61,13 @@ namespace MinimalChatApplication.Controllers
             {
                 return BadRequest(new { error = "Invalid request data." });
             }
-
             // Check if a user with the provided email already exists
             var existingUser = _userRepo.Get(u => u.Email == request.Email);
             if (existingUser != null)
             {
                 return Conflict(new { error = "Email is already registered." });
             }
-
             var (success, message, userDto) = await _userRepo.SignupAsync(request);
-
             if (success)
             {
                 return Ok(new { Message = message, User = userDto });
@@ -78,25 +76,21 @@ namespace MinimalChatApplication.Controllers
             {
                 return BadRequest(new { error = message });
             }
-
         }
 
-
-
-
-
-
-
-
-       // POST: api/login
-       [HttpPost("/api/login")]
+        // Login Method
+        // Description: This HTTP POST method handles user login. It expects a JSON object containing login credentials (email and password).
+        // If the provided credentials are valid, it returns a success response with the user's profile information and an authentication token.
+        // If the provided credentials are incorrect or if the user is not found, it returns an unauthorized response.
+        // If the request data is invalid, it returns a bad request response with an error message.
+        // POST: api/login
+        [HttpPost("/api/login")]
         public async Task<ActionResult> Login([FromBody] loginRequest loginData)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(new { error = "Invalid request data." });
             }
-
             // Find the user by email
             var user = _userRepo.Get(u => u.Email == loginData.Email);
 
@@ -118,19 +112,22 @@ namespace MinimalChatApplication.Controllers
             }
         }
 
+        // Social Login Method
+        // Description: This HTTP POST method handles social login with a Google access token. It expects a JSON object containing the access token.
+        // The method verifies the Google token, creates a new user if not found, generates an authentication token, and returns the user's profile
+        // information and the authentication token. If the token validation fails, it returns a null response.
+        // This method is accessible at the `/api/LoginWithGoogle` route.
         [HttpPost("/api/LoginWithGoogle")]
         public async Task<IActionResult> SocialLogin(tokenRequest token)
         {
-
-            Console.WriteLine(token.TokenId);
             var user = await _userRepo.VerifyGoogleTokenAsync(token.TokenId);
-
             return Ok(user);
         }
-      
 
-     
-
+        // Get Users Method
+        // Description: This HTTP GET method retrieves a list of users from the repository. It ensures that only authenticated users can access the data. 
+        // The method filters out the current user from the list to prevent self-display of user information.
+        // This method is accessible via a GET request to the corresponding route.
         [HttpGet]
         public async Task<ActionResult<List<RealTimeChat.Domain.Models.User>>> GetUser()
         {
@@ -140,9 +137,7 @@ namespace MinimalChatApplication.Controllers
             {
                 return Unauthorized(new { message = "Unauthorized access" });
             }
-
             var users = await _userRepo.GetAllUsersAsync();
-
             var filteredUsers = users
              .Where(u => u.Id != currentUserId)
              .Select(u => new
@@ -152,12 +147,13 @@ namespace MinimalChatApplication.Controllers
                  Email = u.Email
              })
              .ToList();
-
-
-
             return Ok(filteredUsers);
         }
 
+        // Get User by ID Method
+        // Description: This HTTP GET method retrieves a specific user by their unique identifier from the repository. 
+        // The method ensures that the returned user's information is only accessible to authorized users.
+        // This method is accessible via a GET request to the corresponding route with the user's ID as a parameter.
         [HttpGet("{Id}")]
         public async Task<ActionResult<User>> GetUser(string Id)
         {
@@ -169,6 +165,12 @@ namespace MinimalChatApplication.Controllers
             return Ok(user);
         }
 
+
+        // Update User Status Method
+        // Description: This HTTP PUT method allows users to update their status message. It receives a user ID and a new status message 
+        // in the request body and updates the user's status in the repository. The updated status message is then broadcasted to all 
+        // connected clients using SignalR.
+        // This method is accessible via a PUT request to the corresponding route with the user's ID as a parameter.
         [HttpPut("{Id}")]
         public async Task<IActionResult> UpdateStatus(string Id, [FromBody]  StatusMessage statusMessage)
         {
@@ -179,12 +181,8 @@ namespace MinimalChatApplication.Controllers
 
                 return Ok(new
                 {
-                   
                    statusMessage = statusMessage.Content,
-               
                 });
-              
-
             }
             catch (Exception ex)
              {

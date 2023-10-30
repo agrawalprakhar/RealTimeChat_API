@@ -27,23 +27,26 @@ namespace RealTimeChat.DAL.Data
             base.OnModelCreating(builder);
 
             builder.Entity<User>().ToTable("User");
+
             builder.Entity<User>().HasIndex(u => u.Email).IsUnique();
+
             builder.Entity<Message>().ToTable("Message");
+
             builder.Entity<Logs>().ToTable("Logs");
-
-
 
             builder.Entity<Message>()
              .HasOne(m => m.Receiver)
              .WithMany()
              .HasForeignKey(m => m.ReceiverId)
              .OnDelete(DeleteBehavior.NoAction);
+
             //configure sender
             builder.Entity<Message>()
               .HasOne(m => m.Sender)
               .WithMany()
               .HasForeignKey(m => m.SenderId)
               .OnDelete(DeleteBehavior.NoAction);
+
         }
         public DbSet<User> Users { get; set; }
 
