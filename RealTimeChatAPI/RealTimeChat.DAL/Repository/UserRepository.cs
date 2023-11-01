@@ -180,7 +180,7 @@ namespace RealTimeChat.DAL.Repository
                         Email = validPayload.Email,
                         Name = validPayload.Name,
                         Password = "Password@123",
-                        StatusMessage="",
+                        StatusMessage = "",
                     };
                     var result = await _userManager.CreateAsync(newUser);
 

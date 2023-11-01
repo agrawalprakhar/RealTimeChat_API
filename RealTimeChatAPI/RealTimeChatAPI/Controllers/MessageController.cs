@@ -31,7 +31,7 @@ namespace RealTimeChatAPI.Controllers
         // message content. The method validates the request, sends the message to the specified receiver, and broadcasts the sent message 
         // to all connected clients using SignalR.
         // This method is accessible via a POST request to the corresponding route.
-        [HttpPost]
+        [HttpPost("/api/messages")]
         public async Task<ActionResult<sendMessageResponse>> SendMessages(sendMessageRequest request)
         {
             if (!ModelState.IsValid)
@@ -69,7 +69,7 @@ namespace RealTimeChatAPI.Controllers
         // EditMessage Method
         // Description: This method handles the PUT request to edit a specific message. It verifies the current user's authorization,
         // validates the request parameters, edits the message using the message repository, and broadcasts the edited message to all clients.
-        [HttpPut("{messageId}")]
+        [HttpPut("/api/messages/{messageId}")]
         public async Task<IActionResult> EditMessage(int messageId, [FromBody] EditMessage editMessage)
         {
             var userId = GetCurrentUserId();
@@ -110,7 +110,7 @@ namespace RealTimeChatAPI.Controllers
         // DeleteMessage Method
         // Description: This method handles the DELETE request to delete a specific message. It verifies the current user's authorization,
         // attempts to delete the message using the message repository, and broadcasts the deleted message ID to all clients.
-        [HttpDelete("{messageId}")]
+        [HttpDelete("/api/messages/{messageId}")]
         public async Task<IActionResult> DeleteMessage(int messageId)
         {
             var userId = GetCurrentUserId();
@@ -137,7 +137,7 @@ namespace RealTimeChatAPI.Controllers
         // Description: This method handles the GET request to retrieve the conversation history between the current user and another user.
         // It verifies the current user's authorization, retrieves the conversation history using the message repository,
         // and returns the messages as a response.
-        [HttpGet]
+        [HttpGet("/api/messages")]
         public async Task<IActionResult> GetConversationHistory([FromQuery] ConversationRequest request)
         {
             try
@@ -174,7 +174,7 @@ namespace RealTimeChatAPI.Controllers
         // Description: This method handles the GET request to search for conversations based on a query string.
         // It verifies the current user's authorization, performs the search operation using the message repository,
         // and returns the search results as a response.
-        [HttpGet("search")]
+        [HttpGet("/api/conversation/search")]
         public async Task<IActionResult> SearchConversations([FromQuery] string query)
          {
          
