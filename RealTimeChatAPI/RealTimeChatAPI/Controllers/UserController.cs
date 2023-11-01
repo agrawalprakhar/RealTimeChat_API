@@ -128,7 +128,7 @@ namespace MinimalChatApplication.Controllers
         // Description: This HTTP GET method retrieves a list of users from the repository. It ensures that only authenticated users can access the data. 
         // The method filters out the current user from the list to prevent self-display of user information.
         // This method is accessible via a GET request to the corresponding route.
-        [HttpGet]
+        [HttpGet("/api/users")]
         public async Task<ActionResult<List<RealTimeChat.Domain.Models.User>>> GetUser()
         {
             var currentUserId = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -154,7 +154,7 @@ namespace MinimalChatApplication.Controllers
         // Description: This HTTP GET method retrieves a specific user by their unique identifier from the repository. 
         // The method ensures that the returned user's information is only accessible to authorized users.
         // This method is accessible via a GET request to the corresponding route with the user's ID as a parameter.
-        [HttpGet("{Id}")]
+        [HttpGet("/api/users/{Id}")]
         public async Task<ActionResult<User>> GetUser(string Id)
         {
             var user = await _userRepo.GetUserAsync(Id);
@@ -171,7 +171,7 @@ namespace MinimalChatApplication.Controllers
         // in the request body and updates the user's status in the repository. The updated status message is then broadcasted to all 
         // connected clients using SignalR.
         // This method is accessible via a PUT request to the corresponding route with the user's ID as a parameter.
-        [HttpPut("{Id}")]
+        [HttpPut("/api/users/{Id}")]
         public async Task<IActionResult> UpdateStatus(string Id, [FromBody]  StatusMessage statusMessage)
         {
             try
