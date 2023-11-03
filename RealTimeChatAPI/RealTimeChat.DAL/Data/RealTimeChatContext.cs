@@ -47,6 +47,11 @@ namespace RealTimeChat.DAL.Data
               .HasForeignKey(m => m.SenderId)
               .OnDelete(DeleteBehavior.NoAction);
 
+           // Fluent API for configuring the Message entity
+            builder.Entity<Message>()
+            .Property(m => m.IsRead)
+            .HasDefaultValue(false); // Set default value for IsRead property
+
         }
         public DbSet<User> Users { get; set; }
 
