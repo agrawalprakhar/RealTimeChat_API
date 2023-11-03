@@ -28,7 +28,7 @@ namespace RealTimeChatAPI.Hubs
         // It takes a Message object as a parameter and asynchronously sends the message  using the "ReceiveMessage" method.
         public async Task SendMessage(Message message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", message);
+            await Clients.Others.SendAsync("ReceiveMessage", message);
         }
 
 
@@ -192,6 +192,21 @@ namespace RealTimeChatAPI.Hubs
 
             return userId;
         }
+
+        public async Task SendNotification(string userId, string message)
+        {
+            await Clients.User(userId).SendAsync("ReceiveNotification", message);
+        }
+
+        public async Task MarkMessagesAsRead(int[] messageIds)
+        {
+            // Mark messages as read in your database
+            // Broadcast the updated message state to all connected clients
+            await Clients.All.SendAsync("MessagesMarkedAsRead", messageIds);
+        }
+
+
+
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RealTimeChat.DAL.Data;
 using RealTimeChat.DAL.Repository.IRepository;
 using RealTimeChat.Domain.Models;
@@ -132,6 +133,63 @@ namespace RealTimeChat.DAL.Repository
             }).ToList();
 
             return message;
+        }
+
+        public async Task MarkMessageAsRead(int messageId)
+        {
+            var message = await _context.Messages.FindAsync(messageId);
+
+            if (message != null && !message.IsRead)
+            {
+                message.IsRead = true;
+                _context.Messages.Update(message);
+                await _context.SaveChangesAsync();
+
+            }
+        }
+
+        public async Task<IActionResult> MarkMessagesAsRead([FromBody] int[] array)
+        {
+       
+
+            if (array.Length == 0)
+            {
+                return new OkObjectResult(new { message = "Messages marked as read successfully" });
+            }
+
+            foreach (int id in array)
+            {
+                Message message = await _context.Messages.FindAsync(id) ;
+
+                if (message == null)
+                {
+                    return new NotFoundObjectResult($"Message with ID {id} not found");
+                }
+             
+                
+                    message.IsRead = true;
+                    _context.Messages.Update(message);
+                    await _context.SaveChangesAsync();
+                   Console.WriteLine(message);
+
+            }
+
+            return new OkObjectResult(new { message = "Messages marked as read successfully" });
+        }
+
+        public async Task<IActionResult> GetAllUnReadMessages(string authenticatedUserId)
+        {
+            var unReadMessages = _context.Messages.Where(m => m.ReceiverId == authenticatedUserId
+                                                        && m.IsRead == false)
+                                                            .GroupBy(message => message.SenderId)
+                                                             .Select(group => new
+                                                             {
+                                                                 SenderId = group.Key,
+                                                                 Messages = group.ToList()
+                                                             })
+                                                             .ToList();
+
+            return new OkObjectResult(unReadMessages);
         }
     }
 }

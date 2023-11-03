@@ -1,4 +1,5 @@
-﻿using RealTimeChat.Domain.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using RealTimeChat.Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,11 @@ namespace RealTimeChat.DAL.Repository.IRepository
         Task<List<Message>> GetConversationHistoryAsync(ConversationRequest request, string currentUserId);
 
         Task<List<Message>> SearchConversationsAsync(string userId, string query);
+
+        Task MarkMessageAsRead(int messageId);
+
+        Task<IActionResult> MarkMessagesAsRead([FromBody] int[] array);
+
+        Task<IActionResult> GetAllUnReadMessages(string authenticatedUserId);
     }
 }

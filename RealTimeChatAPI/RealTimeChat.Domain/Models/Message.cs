@@ -23,6 +23,8 @@ namespace RealTimeChat.Domain.Models
         public string Content { get; set; }
         public DateTime Timestamp { get; set; }
 
+        public bool IsRead { get; set; }
+
         // Navigation properties
         public User Sender { get; set; }
         public User Receiver { get; set; }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNet.SignalR.Messaging;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
@@ -204,6 +205,48 @@ namespace RealTimeChatAPI.Controllers
                         
                     });
                 }
+        }
+
+        [HttpPost("markasread/{messageId}")]
+        public async Task<IActionResult> MarkMessageAsRead(int messageId)
+        {
+            try
+            {
+                await _messageRepository.MarkMessageAsRead(messageId);
+
+                await _chatHub.Clients.All.SendAsync("ReceiveNotification", "You have a new read message!");
+
+                await _chatHub.Clients.All.SendAsync("MessagesMarkedAsRead", messageId);
+
+                return Ok(new { message = "Message marked as read successfully." });
+            }
+            catch (Exception ex)
+            {
+                // Log the exception and return an error response
+                return StatusCode(500, new { error = "An error occurred while marking the message as read." });
+            }
+        }
+
+        [HttpPut("read")]
+        public async Task<IActionResult> MarkMessagesAsRead([FromBody] int[] array)
+        {
+                await _messageRepository.MarkMessagesAsRead(array);
+
+              // Notify connected clients about the updated message state
+                await _chatHub.Clients.All.SendAsync("MessagesRead", array);
+
+                return new OkObjectResult(new { message = "Messages marked as read successfully" });
+
+        }
+
+        [HttpGet("unread")]
+        public async Task<IActionResult> GetAllUnReadMessages()
+        {
+            var authenticatedUser =  GetCurrentUserId();
+
+            return await _messageRepository.GetAllUnReadMessages(authenticatedUser);
+
+ 
         }
 
     }
