@@ -13116,19 +13116,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\pranj\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+      "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
       "projectName": "RealTimeChatAPI",
-      "projectPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
+      "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\RealTimeChatAPI.csproj",
+      "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChatAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13142,11 +13142,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
-              "projectPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
+            "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj": {
+              "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.DAL\\RealTimeChat.DAL.csproj"
             },
-            "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
-              "projectPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
+            "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+              "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj"
             }
           }
         }

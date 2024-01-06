@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {}
+    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
+    "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
         "projectName": "RealTimeChat.Domain",
-        "projectPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\24Oct\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
+        "projectPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\RealTimeChat.Domain.csproj",
+        "packagesPath": "C:\\Users\\pranj\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\pranj\\OneDrive\\Documents\\Desktop\\4Nov\\RealTimeChat_API\\RealTimeChatAPI\\RealTimeChat.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pranj\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
